@@ -14549,10 +14549,11 @@ D. tanh</p>
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14585,7 +14586,7 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
@@ -14611,7 +14612,7 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading the data </span>
@@ -14625,7 +14626,7 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Vilizating the data</span>
@@ -14654,7 +14655,7 @@ matplotlib is a common package for vasualization.</p>
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWQAAADVCAYAAABg+opEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvhp/UCwAADsRJREFUeJzt3WFo3dd5x/HfU2d23aWRFdvNEgesBIM3d5mdRB2jSWu7jcfG1tnbSCjZwE4HNoNC7JbN7osSBfbC7otiQ8vqN4vE6BgxZdZWyEpcS15bknYSkcLWzSy2ZeKwZFEdKylNWzBnL3TDytB5zr1/Xd3zCH0/EFB47tX/0fH9/3x1/XCOpZQEAKjvfbUbAADMI5ABIAgCGQCCIJABIAgCGQCCIJABIAgCGQCCIJABIAgCGQCCuKWTB2/YsCENDAx0fJG33nrLrV+7di1bu+2227K1u+++O1tbtWpVubEFzMzMaHZ21tp9fNM1Kbl48WK2dvPmzWztrrvuytbWrVvXuJ/JycnZlNLGdh67VGvyzjvvZGuXLl3K1tauXZutbd26tXE/nayJ1HxdXn/9dbf+2muvZWurV6/O1rZt25atLff7x7tHrly5kq1t2bKl671I7b9WOgrkgYEBTUxMdNzMmTNn3PrRo0eztT179mRrx48fz9b6+/vLjS1gcHCwo8c3XZOSXbt2ZWs3btzI1p5++ulsbe/evY37MbOr7T52qdZkfHw8W9u3b1+2tmPHjkbfs6STNZGar8uJEyfc+rFjx7K1TZs2ZWvnz5/P1pb7/ePdIwcOHMjWzp492/VepPZfK3xkAQBBEMgAEASBDABBEMgAEASBDABBdDRl0ZQ3RSH5YyjeyNztt9+erT377LPuNR999FG3Xps3onbhwoVsbWxsLFtbzJRFL0xNTbn13bt3Z2t9fX3Z2szMTNOWesablCi9lk+fPp2tHTp0KFubnJzM1h555BH3mtENDw9na97UTW28QwaAIAhkAAiCQAaAIAhkAAiCQAaAIAhkAAiia2Nv3giNN9Ym+Tt13Xvvvdmat/GQ149Uf+ytNOLVdNObyCM9JaWNXbZv356teZsLeRsuRXHw4MFsrTQ2+uCDD2Zr99xzT7a2nEfbvM2DJH/s7fDhw9naYkYku7FrHe+QASAIAhkAgiCQASAIAhkAgiCQASAIAhkAgiCQASCIrs0he9tkPvDAA+5zvVljjzd/GcHJkyeztaGhIfe5c3Nzja7pHY4anTcfKvlznt5zo287Kvn3wOXLl93nenP+3qyxd882PeS0V7w5Y8mfJ/YOOfVeR6VT20v3dDt4hwwAQRDIABAEgQwAQRDIABAEgQwAQRDIABBET8bevG0yl+qaEcZ2vBEab/RGat5/aVvC2rz+vDFBqbw9Z05pRCq60ljo9evXszVv7M2rnTt3zr1mL+6v0dHRbO3IkSPuc/fv39/omqdOncrWnnnmmUbfsxO8QwaAIAhkAAiCQAaAIAhkAAiCQAaAIAhkAAiia2Nv3hhM6QRojzfaNjExka099thjja+5nHmnWUc4kdrbEcsbOSrxRuJKu3Qtd969542vHTp0KFs7ceKEe83jx4+XG1ukvr6+RjVJGhkZydZKJ77neCebdwvvkAEgCAIZAIIgkAEgCAIZAIIgkAEgCAIZAILo2tibtyOVN54mSWfOnGlU8xw9erTR87C0vF3uxsfH3edOT09na95IknfI6RNPPOFeM8IBqceOHXPrTQ8yff7557O1CGOj3oG9pV0NvdE27/t6u8T1YnySd8gAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEERP5pBLW/l5M8ODg4PZ2mK29aytNNPozb96p/F6s7ylk657wdsCtLQtolf3tvX01mtgYMC9ZoQ55NIJzwcPHmz0fb1Z49OnTzf6nlF499fc3Fy2Vvse4R0yAARBIANAEAQyAARBIANAEAQyAARBIANAEJZSav/BZm9Kurp07YSwOaW0sd0Hr5A1kTpYF9ZkYStkXViThbW1Lh0FMgBg6fCRBQAEQSADQBAEMgAEQSADQBAEMgAEQSADQBAEMgAEQSADQBAEMgAEES6Qzez9ZvZNM5s2s781M6vdUxRm9ktm9k+1+4jC5o2Y2Ytm9o9m1rUTcJYrM7vFzM6Y2ffM7G9q9xOJmR0xs3O1+/CEC2RJfyrpWkppu6R+SXsq9xOCma2VNCnW4xc9JOmWlNJvSbpN0m9X7ieCfZKmU0oPSbrTzPJnZq0gZrZZ0oHafZREDORPSHq+9fV5Sbsr9hJGSundlNJvSLpWu5dA3pB0qvX1z2s2Esg/S/py67eFdZLertxPFKckfaF2EyURf8VbL+m9UwjflrS1Yi8ILKX0X5JkZn8oabWkb9XtqL6U0o8lycy+L+m/U0qXK7dUnZk9Lmla0g9r91IS8R3yrKS+1td9rf8HFmRmfyDpSUmfSindrN1PbWa23szWSPqopH4z4zdM6fclfVLS30t60Mw+W7mfrIiB/G3932eBn5A0VrEXBGZmvyLpLyT9Xkrpndr9BPF5SY+2/nL6iaS1lfupLqX0eErpYUmfljSZUvpK7Z5yIgby1yVtMrOXJV3XfEADC9kv6U5J3zKz75rZZ2o3FMBXJX3GzF6Q9CPxMc6ywgb1ABBExHfIALAiEcgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEASBDABBEMgAEMQtnTx4w4YNaWBgoOOLXLx40a2vWbMmW2tyvcWYmZnR7Oystfv4pmtS4q3ZzZs3s7Vt27Z1vRdJmpycnE0pbWznsU3X5I033nDr3s9948aNbO3dd9/N1latWuVe87777svWpqam2l4Tqfm6vPrqq27d+9nXr1+frd1xxx3ZWmldcnp1/7zyyitu3XutbN26tePrLVa7909HgTwwMKCJiYmOm9m1a1fx++YMDw93fL3FGBwc7OjxTdekxFsz7wZcil4kycyutvvYpmty8uRJt+793GfPns3Wpqens7Vbb73VvebY2Fi21t/f3/aaSM3X5fDhw27d+9kPHDjQ6PuuW7eu2NdCenX/7Nu3z617r5Xx8fGOr7dY7d4/fGQBAEEQyAAQBIEMAEEQyAAQBIEMAEF0NGXR1MzMjFu/cOFCtjYyMpKtbd68ufE1axsdHXXr3po89dRT3W5nWfD+5d+b0PBq3r/Gl67ZK1NTU42f600pedMGNSYR/j/vHi7dPx6z/FTe9u3bs7XF/Dm0i3fIABAEgQwAQRDIABAEgQwAQRDIABAEgQwAQfRk7K00OnT1an7fjb6+vmyt6QY87fS01BYzulbaWGW5Km2i4xkaGsrWvPGpCONdJTt27HDrTTfn8u6B0rqUNgzrhtI97Nm5c2e25q1X7dcD75ABIAgCGQCCIJABIAgCGQCCIJABIAgCGQCCIJABIIiezCGXTpX1DqGcm5vL1rz5zNpzxiWlGUtvG8DSXGpkS7XlY+mA1BzvgFDJPyS0V0o93H///dmaN4Pt3SO9Pu292z14f67eHP9iZp+7gXfIABAEgQwAQRDIABAEgQwAQRDIABAEgQwAQfRk7K00WuSNO3knvR45cqRpS4va6rEbSuM13siPN+LljfREH2UqnerbdCzOe/31YhvJxVrMKJZ3evmVK1eytQivFW8szxsLlaT+/v5s7cknn8zWvNdg6ST7bqwZ75ABIAgCGQCCIJABIAgCGQCCIJABIAgCGQCC6MnYW8lSjB6VRlRqK43IeONK3hiUNwr40ksvudfsxS5y3s9dGo80s0bPXQ6jbd641e7du93neieYe/eBNyJZ+rOoPRZXGpH06k1f56VR2dKatYN3yAAQBIEMAEEQyAAQBIEMAEEQyAAQBIEMAEH0ZOxtdHTUrff19WVrQ0NDja7pjfREUDq40htf80aOvDGn0lhO7cNTS2NF3utk586d3W6np7w/U+/nlvx1814P3uGow8PD7jWb3pe94r2WvfXyfu5ujLWV8A4ZAIIgkAEgCAIZAIIgkAEgCAIZAIIgkAEgCAIZAILoyRzy2NiYWz916lSj77t///5sLfqWi6U5ZG9+1JuV9H7u6LPZpVOlR0ZGsjXvhOLlwOu/9Fr2Tlj2Zpj37t2brdU+lb2k1J+3/aa3fa33GuzFnD7vkAEgCAIZAIIgkAEgCAIZAIIgkAEgCAIZAIKwlFL7DzZ7U9LVpWsnhM0ppY3tPniFrInUwbqwJgtbIevCmiysrXXpKJABAEuHjywAIAgCGQCCIJABIAgCGQCCIJABIAgCGQCCIJABIAgCGQCCIJABIIhwgWxmv2Nm18zsu63/ttbuKQoz+0sz+46ZPWdmq2v3U5uZ7fqF18mrZpY/QmaFMLNfNrNRM/uemX2pdj9RmFm/mY231uWLtfvJCRfILX+dUnq49d/F2s1EYGb3SvpwSuljkp6TdHfllqpLKY2/9zqR9LKkl2r3FMCfSHoxpfSQpA+b2a/VbiiIxyX9e2tdHjKze2o3tJCogfzHZvYDM/uGmVntZoL4pKR+M/sXSR+TdKVyP2GY2QckbUkpvVy7lwB+JukDrfvm/ZJ+XrmfSD7YWheTtPQH5DUQMZAvSfpiSuk3Jd0paWflfqLYKOnNlNLHNf/u+OHK/USyR9K3azcRxN9J+l1J/yHpP1NKlyr3E8XXJa2T9A3N/6W1tm47C4sYyNclnWt9PSPpQ/VaCeVtSe99fHNZ0qaKvUTzKUnfrN1EEF+Q9LWU0q9Kut3MPlq7oUD+LKX0R5oP5P+p3cxCIgby5yR92szeJ+nXJf1b5X6imJT0kdbXWzQfyite61fQ3ZLO1+4liA9K+mnr659JurViL5F8XNLXzGyNpO2SXqzcz4IiBvJXJD0h6fuS/iGl9MPK/YSQUnpB0qyZ/aukiymlH9TuKYiPaP4fa35afOTK8FVJf25mL2j+13I+ypn3nOY/U/+OpL9KKf24cj8LYoN6AAgi4jtkAFiRCGQACIJABoAgCGQACIJABoAgCGQACIJABoAg/heFi/Qtq1O81wAAAABJRU5ErkJggg==
 "
 >
 </div>
@@ -14667,7 +14668,41 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Split the data into training set and test set </span>
@@ -14682,13 +14717,14 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># reformulate the label. </span>
 <span class="c1"># If the digit is smaller than 5, the label is 0.</span>
 <span class="c1"># If the digit is larger than 5, the label is 1.</span>
-
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span> <span class="o">/</span> <span class="mf">16.</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span> <span class="o">/</span> <span class="mf">16.</span>
 <span class="n">y_train</span><span class="p">[</span><span class="n">y_train</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">y_train</span><span class="p">[</span><span class="n">y_train</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -14702,7 +14738,7 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -14716,7 +14752,7 @@ matplotlib is a common package for vasualization.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -14802,7 +14838,7 @@ $$ J = \frac{1}{m}\sum_{i=1}^{m}L(a^{(i)},y^{(i)}) $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14826,7 +14862,7 @@ $$ J = \frac{1}{m}\sum_{i=1}^{m}L(a^{(i)},y^{(i)}) $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test your code </span>
@@ -14867,7 +14903,7 @@ $$ J = \frac{1}{m}\sum_{i=1}^{m}L(a^{(i)},y^{(i)}) $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Random innitialize the parameters</span>
@@ -14897,7 +14933,7 @@ $$ J = \frac{1}{m}\sum_{i=1}^{m}L(a^{(i)},y^{(i)}) $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">initialize_parameters</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -14913,22 +14949,22 @@ $$ J = \frac{1}{m}\sum_{i=1}^{m}L(a^{(i)},y^{(i)}) $$</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[45]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(array([[0.70510704],
-        [0.10440858],
-        [0.51509255],
-        [0.64678648],
-        [0.34501852],
-        [0.14580832],
-        [0.10768875],
-        [0.07441426],
-        [0.20032451],
-        [0.97285245]]), 0.2604728989795829)</pre>
+<pre>(array([[0.59573027],
+        [0.35581604],
+        [0.63365009],
+        [0.33806606],
+        [0.47294663],
+        [0.68936429],
+        [0.82234105],
+        [0.61765284],
+        [0.78523541],
+        [0.04000724]]), 0.7355347953291298)</pre>
 </div>
 
 </div>
@@ -14975,7 +15011,7 @@ $$\frac{\partial{J}}{\partial{b}} = \frac{1}{m}\sum_{i=1}^m(a^{(i)}-y^{(i)}) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">propagate</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span>
@@ -15013,7 +15049,7 @@ $$\frac{\partial{J}}{\partial{b}} = \frac{1}{m}\sum_{i=1}^m(a^{(i)}-y^{(i)}) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">initialize_parameters</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -15029,7 +15065,7 @@ $$\frac{\partial{J}}{\partial{b}} = \frac{1}{m}\sum_{i=1}^m(a^{(i)}-y^{(i)}) $$<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cost</span>
@@ -15045,13 +15081,13 @@ $$\frac{\partial{J}}{\partial{b}} = \frac{1}{m}\sum_{i=1}^m(a^{(i)}-y^{(i)}) $$<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array(1.71432883)</pre>
+<pre>array(1.50397418)</pre>
 </div>
 
 </div>
@@ -15078,7 +15114,7 @@ $$\theta = \theta - \alpha*d\theta$$ where $\alpha$ is the learning rate.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">print_cost</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -15145,7 +15181,7 @@ Two steps to finish this task:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -15196,7 +15232,7 @@ Two steps to finish this task:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span><span class="n">print_cost</span><span class="p">):</span>
@@ -15246,7 +15282,7 @@ Two steps to finish this task:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span><span class="n">print_cost</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -15256,31 +15292,10 @@ Two steps to finish this task:</p>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: divide by zero encountered in log
-  
-/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in multiply
-  
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;training_accuracy&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;costs&#39;</span><span class="p">]</span>
@@ -15296,24 +15311,24 @@ Two steps to finish this task:</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(array([0.88938382]),
- array([0.87555556]),
- [array(nan),
-  array(nan),
-  array(nan),
-  array(0.43079217),
-  array(0.36875416),
-  array(0.33923772),
-  array(0.32250647),
-  array(0.31171687),
-  array(0.3041157),
-  array(0.29842249)])</pre>
+<pre>(array([0.74090572]),
+ array([0.76444444]),
+ [array(5.81510268),
+  array(2.95292502),
+  array(0.86129695),
+  array(0.6810052),
+  array(0.65266482),
+  array(0.62937545),
+  array(0.60929081),
+  array(0.59178871),
+  array(0.57637991),
+  array(0.56267976)])</pre>
 </div>
 
 </div>
