@@ -1,4 +1,6 @@
 import json
+
+
 def get_word_frequency(word):
     with open('dictionary.json', 'r') as f:
         dictionary = json.load(f)

@@ -1,4 +1,5 @@
 import numpy as np
+from gen_vector import *
 
 #计算向量之间的余弦相似度
 def cos_sim(v1, v2):
@@ -42,7 +43,7 @@ def top_n(sim_list, n):
 
 def gen_text(title, article, n_top=2):
     title_sv, sv, article_sv, original_sentences = gen_vector(title, article)
-    sim_list = correlation(title_sv, sv, article_sv, alpha=0.2， n_neighbors=2)
+    sim_list = correlation(title_sv, sv, article_sv, alpha=0.2)
     n_list = top_n(sim_list, n_top)
     output = ''
     for i in sorted(n_list):
@@ -50,4 +51,3 @@ def gen_text(title, article, n_top=2):
     if output[-1] not in r'，|。|！|？':
         output = output[:-1] + '。'
     return output
-    
